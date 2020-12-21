@@ -20,14 +20,12 @@ import seaborn as sns
 
 # parse/define command line arguments here
 opt = docopt(__doc__)
-# To Do: need to figure out why dfs aren't equal between my jupyter lab and script outputs
 
 
 def main(train_path):
 
 
     df = pd.read_csv(train_path) #"data/train.csv"
-
     # establishes what we want to fill the column NaNs with
     imput_dict = {"Alley":"no_access", "BsmtQual": "no_bsmt", "BsmtCond":"no_bsmt", 
                  "BsmtExposure":"no_bsmt", "BsmtFinType1":"no_bsmt", "BsmtFinType2":"no_bsmt",
@@ -37,14 +35,14 @@ def main(train_path):
                   'MasVnrType': "None", "MasVnrArea": 0 }
     
     # Make copy of original df and then apply missing data operations
-    #df = orig_df.copy()
+
     df.fillna(value = imput_dict, inplace = True)
     df.dropna(inplace = True)
-    
-    df.to_csv("data/cleaned_train.csv", index = True)
+    print(df[['GarageYrBlt']].head())
+    df.to_csv("data/cleaned_train.csv", index = False)
 
 
-#cleaned_train = clear_missing(train)
+
 
 # call main function
 if __name__ == "__main__":
