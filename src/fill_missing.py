@@ -38,7 +38,6 @@ def main(train_path):
 
     df.fillna(value = imput_dict, inplace = True)
     df.dropna(inplace = True)
-    print(df[['GarageYrBlt']].head())
     df.to_csv("data/cleaned_train.csv", index = False)
 
 
