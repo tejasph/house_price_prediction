@@ -1,4 +1,4 @@
-# This is a preliminary exploration of the data
+# Splitting the data
 # December 22nd 2020
 
 '''This script splits the data.
