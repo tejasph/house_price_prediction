@@ -22,7 +22,8 @@ def main():
         model = pickle.load(open(modelpath, 'rb'))
 
         # Get model name
-        score_dict['Model'].append(re.findall("results\/(.*)[.]pkl", modelpath)[0])
+        score_dict['Model'].append("test")
+        #re.findall("results\/(.*)[.]pkl", modelpath)[0]
 
         # Get model predictions and obtain RMSE
         y_pred = model.predict(X_valid)
