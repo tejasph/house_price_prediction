@@ -16,14 +16,14 @@ def main():
     y_valid = pd.read_csv("data/y_valid.csv")
 
     # For every model in the results folder
-    for modelpath in glob.glob("results/*.pkl"):
+    for modelpath in glob.glob("models/*.pkl"):
         
         # Load Model
         model = pickle.load(open(modelpath, 'rb'))
 
         # Get model name
-        score_dict['Model'].append("test")
-        #re.findall("results\/(.*)[.]pkl", modelpath)[0]
+        score_dict['Model'].append(re.findall("models\/(.*)[.]pkl", modelpath)[0])
+        #
 
         # Get model predictions and obtain RMSE
         y_pred = model.predict(X_valid)
