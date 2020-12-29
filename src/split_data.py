@@ -33,10 +33,10 @@ def main(clean_train_path):
     # split data with a random state to ensure reproducibility
     X_train, X_valid, y_train, y_valid = train_test_split(X, y, test_size=0.2, random_state=10)
 
-    X_train.to_csv("data/X_train.csv")
-    X_valid.to_csv("data/X_valid.csv")
-    y_train.to_csv("data/y_train.csv")
-    y_valid.to_csv("data/y_valid.csv")
+    X_train.to_csv("data/X_train.csv", index = False)
+    X_valid.to_csv("data/X_valid.csv", index = False)
+    y_train.to_csv("data/y_train.csv", index = False)
+    y_valid.to_csv("data/y_valid.csv", index = False)
 
 
 # call main function

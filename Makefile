@@ -16,7 +16,7 @@ data/cleaned_train.csv: src/fill_missing.py
 # Preprocessing Step
 
 # Splits the data
-data/X_train.csv data/X_valid.csv data/y_train.csv data/y_valid.csv: src/split_data.py
+data/X_train.csv data/X_valid.csv data/y_train.csv data/y_valid.csv: src/split_data.py data/cleaned_train.csv
 	python src/split_data.py --clean_train_path=data/cleaned_train.csv
 
 
@@ -28,6 +28,7 @@ models/dummy_reg.pkl: data/X_train.csv data/X_valid.csv data/y_train.csv data/y_
 results/model_table.csv: src/model_table_init.py models/dummy_reg.pkl
 	python src/model_table_init.py
 
+# Remove all files
 clean:
 	rm -rf data/cleaned_train.csv
 	rm -rf data/X_train.csv
