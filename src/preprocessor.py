@@ -41,18 +41,26 @@ function_grading = ['Typ', 'Min1', 'Min2', 'Mod', 'Maj1', 'Maj2', 'Sev', 'Sal']
 fire_grading = ['no_fireplace'] + std_grading 
 ordinates = std_grading, std_grading, std_grading, std_grading, function_grading, fire_grading
 
+
+
 #passthru option
 preprocessor = make_column_transformer(
     (StandardScaler(), num_cols), 
     (OrdinalEncoder(categories=ordinates), ord_cols),
-    (OneHotEncoder(handle_unknown="ignore"), cat_cols),
-    (OneHotEncoder(drop='if_binary'), bin_cols),
+    (OneHotEncoder(handle_unknown="ignore", sparse=False), cat_cols),
+    (OneHotEncoder(drop='if_binary', sparse=False), bin_cols),
     #(passthrough, pass_cols)
 )
 
-X_train = preprocessor.fit_transform(X_train)   # Losing column names here
-pd.DataFrame(X_train.todense()).to_csv("data/X_train_scaled.csv")
+X_train = preprocessor.fit_transform(X_train)
+
+cat_cols = preprocessor.named_transformers_['onehotencoder-1'].get_feature_names()
+bin_cols = preprocessor.named_transformers_['onehotencoder-2'].get_feature_names()
+
+transfeat_names = num_cols + ord_cols + list(cat_cols) + list(bin_cols)
+
+pd.DataFrame(X_train, columns=transfeat_names).to_csv("data/X_train_scaled.csv")
 
 X_valid = preprocessor.transform(X_valid)
-pd.DataFrame(X_valid.todense()).to_csv("data/X_valid_scaled.csv")
+pd.DataFrame(X_valid, columns=transfeat_names).to_csv("data/X_valid_scaled.csv")
 
