@@ -64,3 +64,4 @@ pd.DataFrame(X_train, columns=transfeat_names).to_csv("data/X_train_scaled.csv")
 X_valid = preprocessor.transform(X_valid)
 pd.DataFrame(X_valid, columns=transfeat_names).to_csv("data/X_valid_scaled.csv")
 
+#https://stats.stackexchange.com/questions/463690/multiple-regression-with-mixed-continuous-categorical-variables-dummy-coding-s
