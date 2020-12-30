@@ -8,6 +8,7 @@ data/y_train.csv \
 data/y_valid.csv \
 data/X_train_scaled.csv \
 models/dummy_reg.pkl \
+models/base*.csv \
 results/model_table.csv
 
 # Deal with missing data
@@ -24,9 +25,13 @@ data/X_train.csv data/X_valid.csv data/y_train.csv data/y_valid.csv: src/split_d
 data/X_train_scaled.csv data/X_valid_scaled.csv: src/preprocessor.py data/X_train.csv data/X_valid.csv
 	python src/preprocessor.py
 
-# Train Models
-models/dummy_reg.pkl: data/X_train.csv data/X_valid.csv data/y_train.csv data/y_valid.csv
+# Train Dummy Model (need to change to scaled data)
+models/dummy_reg.pkl: data/X_train_scaled.csv data/X_valid_scaled.csv data/y_train.csv data/y_valid.csv
 	python src/baseline_score.py
+
+# Train Baseline Models
+models/base*.csv: src/baseline_models.py data/X_train_scaled.csv data/y_train.csv 
+	python src/baseline_models.py
 
 # Create Results Table for models
 results/model_table.csv: src/model_table_init.py models/dummy_reg.pkl
@@ -39,5 +44,5 @@ clean:
 	rm -rf data/X_valid.csv
 	rm -rf data/y_train.csv
 	rm -rf data/y_valid.csv
-	rm -rf models/dummy_reg.pkl
-	rm -rf models/model_table.csv
+	rm -rf models/*.csv
+	rm -rf results/model_table.csv

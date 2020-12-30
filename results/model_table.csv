@@ -1,2 +1,7 @@
 Model,RMSE
 dummy_reg,6101895967.181777
+base_DecisionTree,1286162059.8082192
+base_GradientBoostRegression,696896494.2857022
+base_RandomForest,797405946.5943867
+base_LinearRegression,1.7735246992272254e+31
+base_SupportVectorRegression,6338248564.718394

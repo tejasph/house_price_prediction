@@ -54,14 +54,15 @@ preprocessor = make_column_transformer(
 
 X_train = preprocessor.fit_transform(X_train)
 
+# Obtain feature names (might be a better way to do this)
 cat_cols = preprocessor.named_transformers_['onehotencoder-1'].get_feature_names()
 bin_cols = preprocessor.named_transformers_['onehotencoder-2'].get_feature_names()
 
 transfeat_names = num_cols + ord_cols + list(cat_cols) + list(bin_cols)
 
-pd.DataFrame(X_train, columns=transfeat_names).to_csv("data/X_train_scaled.csv")
+pd.DataFrame(X_train, columns=transfeat_names).to_csv("data/X_train_scaled.csv", index = False)
 
 X_valid = preprocessor.transform(X_valid)
-pd.DataFrame(X_valid, columns=transfeat_names).to_csv("data/X_valid_scaled.csv")
+pd.DataFrame(X_valid, columns=transfeat_names).to_csv("data/X_valid_scaled.csv", index = False)
 
 #https://stats.stackexchange.com/questions/463690/multiple-regression-with-mixed-continuous-categorical-variables-dummy-coding-s

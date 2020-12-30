@@ -12,7 +12,7 @@ from docopt import docopt
 def main():
 
     score_dict = {"Model":[], "RMSE":[]}
-    X_valid = pd.read_csv("data/X_valid.csv")
+    X_valid_scaled = pd.read_csv("data/X_valid_scaled.csv")
     y_valid = pd.read_csv("data/y_valid.csv")
 
     # For every model in the results folder
@@ -26,7 +26,7 @@ def main():
         #
 
         # Get model predictions and obtain RMSE
-        y_pred = model.predict(X_valid)
+        y_pred = model.predict(X_valid_scaled)
         score_dict['RMSE'].append(mean_squared_error(y_pred, y_valid))
     
     # Turn Dictionary into a dataframe and write to results folder
