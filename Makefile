@@ -10,7 +10,6 @@ data/X_train_scaled.csv \
 models/dummy_reg.pkl \
 models/base*.pkl \
 models/opt_rf.pkl \
-results/opt_rf_predictions.csv \
 results/model_table.csv
 
 # Deal with missing data
@@ -34,7 +33,7 @@ models/base*.pkl: src/baseline_models.py data/X_train_scaled.csv data/y_train.cs
 	python src/baseline_models.py
 
 # Optimize RF
-models/opt_rf.pkl results/opt_rf_predictions.csv: src/optimize_rf.py data/X_train_scaled.csv data/X_valid_scaled.csv data/y_train.csv data/y_valid.csv
+models/opt_rf.pkl: src/optimize_rf.py data/X_train_scaled.csv data/X_valid_scaled.csv data/y_train.csv data/y_valid.csv
 	python src/optimize_rf.py
 
 # Create Results Table for models
@@ -51,5 +50,5 @@ clean:
 	rm -rf data/y_valid.csv
 	rm -rf models/*.pkl
 	rm -rf results/model_table.csv
-	rm -rf results/opt_rf_predictions.csv
+
 
