@@ -50,6 +50,10 @@ models/opt_gbr.pkl: src/optimize_gbr.py data/X_train_scaled.csv data/y_train.csv
 results/model_table.csv: src/model_table_init.py models/dummy_reg.pkl
 	python src/model_table_init.py
 
+##################################################################################################################
+# Prepare Test data
+
+
 
 # Remove all files
 clean:
