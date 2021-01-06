@@ -10,6 +10,8 @@ data/X_train_scaled.csv \
 models/dummy_reg.pkl \
 models/base*.pkl \
 models/opt_rf.pkl \
+models/opt_svr.pkl \
+models/opt_gbr.pkl \
 results/model_table.csv
 
 # Deal with missing data
@@ -32,9 +34,17 @@ models/dummy_reg.pkl: data/X_train_scaled.csv data/X_valid_scaled.csv data/y_tra
 models/base*.pkl: src/baseline_models.py data/X_train_scaled.csv data/y_train.csv 
 	python src/baseline_models.py
 
-# Optimize RF
+# Optimize RF (can potentially remove X_valid, yvalid)
 models/opt_rf.pkl: src/optimize_rf.py data/X_train_scaled.csv data/X_valid_scaled.csv data/y_train.csv data/y_valid.csv
 	python src/optimize_rf.py
+
+# Optimize SVR
+models/opt_svr.pkl: src/optimize_svr.py data/X_train_scaled.csv data/y_train.csv
+	python src/optimize_svr.py
+
+# Optimize GradientBoostingRegressor
+models/opt_gbr.pkl: src/optimize_gbr.py data/X_train_scaled.csv data/y_train.csv
+	python src/optimize_gbr.py
 
 # Create Results Table for models
 results/model_table.csv: src/model_table_init.py models/dummy_reg.pkl
@@ -50,5 +60,6 @@ clean:
 	rm -rf data/y_valid.csv
 	rm -rf models/*.pkl
 	rm -rf results/model_table.csv
+
 
 

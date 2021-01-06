@@ -31,6 +31,7 @@ def main():
     
     # Turn Dictionary into a dataframe and write to results folder
     df = pd.DataFrame(score_dict)
+    df = df.sort_values(by = ['RMSE'])
     df.to_csv("results/model_table.csv", index = False)
 
 
