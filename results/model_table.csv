@@ -1,8 +1,0 @@
-Model,RMSE
-dummy_reg,6101895967.181777
-base_DecisionTree,1565796149.1541095
-base_GradientBoostRegression,705711747.3089229
-base_RandomForest,772828279.9128809
-base_LinearRegression,1.7735246992272254e+31
-base_SupportVectorRegression,6338248564.718394
-opt_rf,745579443.0389297
