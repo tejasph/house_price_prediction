@@ -13,7 +13,8 @@ models/opt_rf.pkl \
 models/opt_svr.pkl \
 models/opt_gbr.pkl \
 results/model_table.csv \
-data/cleaned_test.csv
+data/cleaned_test.csv \
+data/X_test_scaled.csv
 
 # Deal with missing data
 data/cleaned_train.csv: src/fill_missing.py
@@ -53,8 +54,12 @@ results/model_table.csv: src/model_table_init.py models/dummy_reg.pkl
 
 ##################################################################################################################
 # Prepare Test data
-#data/cleaned_test.csv:
+data/cleaned_test.csv: src/fill_missing.py
+	python src/fill_missing.py --train_path=data/test.csv --write_name=test
 
+# Process data
+data/X_test_scaled.csv: src/preprocess_test.py data/cleaned_test.csv data/cleaned_train.csv
+	python src/preprocess_test.py
 
 # Remove all files
 clean:
@@ -65,6 +70,8 @@ clean:
 	rm -rf data/y_valid.csv
 	rm -rf models/*.pkl
 	rm -rf results/model_table.csv
+	rm -rf data/cleaned_test.csv
+	rm -rf data/X_test_scaled.csv
 
 
 
