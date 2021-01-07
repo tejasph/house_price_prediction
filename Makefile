@@ -12,11 +12,12 @@ models/base*.pkl \
 models/opt_rf.pkl \
 models/opt_svr.pkl \
 models/opt_gbr.pkl \
-results/model_table.csv
+results/model_table.csv \
+data/cleaned_test.csv
 
 # Deal with missing data
 data/cleaned_train.csv: src/fill_missing.py
-	python src/fill_missing.py --train_path=data/train.csv
+	python src/fill_missing.py --train_path=data/train.csv --write_name=train
 
 # Splits the data
 data/X_train.csv data/X_valid.csv data/y_train.csv data/y_valid.csv: src/split_data.py data/cleaned_train.csv
@@ -52,7 +53,7 @@ results/model_table.csv: src/model_table_init.py models/dummy_reg.pkl
 
 ##################################################################################################################
 # Prepare Test data
-
+#data/cleaned_test.csv:
 
 
 # Remove all files

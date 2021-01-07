@@ -1,10 +1,10 @@
 Model,RMSE
-opt_gbr,626555830.8922446
-base_GradientBoostRegression,691556391.6225488
-base_RandomForest,729039340.8926528
-opt_rf,767640892.810176
-opt_svr,1329955162.4338622
-base_DecisionTree,1349519135.619863
+opt_gbr,619952147.55683
+base_GradientBoostRegression,674468005.0934427
+base_RandomForest,724073019.8836572
+opt_rf,760610876.3669636
+opt_svr,1217593509.702063
+base_DecisionTree,1624660552.5239725
 dummy_reg,6101895967.181777
 base_SupportVectorRegression,6338248564.718394
 base_LinearRegression,1.7735246992272254e+31

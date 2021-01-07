@@ -4,11 +4,12 @@
 '''This script takes in the raw train dataset. 
 It then deals with missing data, and writes out a clean dataset.
 
-Usage: fill_missing.py --train_path=<train_path> 
+Usage: fill_missing.py --train_path=<train_path> --write_name=<write_name>
 
 
 Options: 
 --train_path=<train_path>   :   Relative file path for the train csv
+--write_name=<write_name>   :   Type of file
 
 ''' 
 
@@ -22,7 +23,7 @@ import seaborn as sns
 opt = docopt(__doc__)
 
 
-def main(train_path):
+def main(train_path, write_name):
 
 
     df = pd.read_csv(train_path) #"data/train.csv"
@@ -48,11 +49,11 @@ def main(train_path):
     # changes float to int
     df = df.astype({"GarageYrBlt": int})
 
-    df.to_csv("data/cleaned_train.csv", index = False)
+    df.to_csv("data/cleaned_" + write_name + ".csv", index = False)
 
 
 
 
 # call main function
 if __name__ == "__main__":
-    main(opt["--train_path"])
+    main(opt["--train_path"], opt["--write_name"])
